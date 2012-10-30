@@ -7,5 +7,3 @@ group :development do
   gem "jeweler"
   gem "simplecov"
 end
-
-gemspec
