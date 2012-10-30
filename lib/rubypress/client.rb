@@ -30,7 +30,7 @@ module Rubypress
     end
 
     def connect
-      @connection = XMLRPC::Client.new(self.host, self.path, self.port,nil,nil,nil,nil,self.use_ssl,nil)
+      @connection = XMLRPC::Client.new(self.host, self.path, self.port, nil, nil, nil, nil, self.use_ssl, nil)
     end
 
     def get_options(options = {})
