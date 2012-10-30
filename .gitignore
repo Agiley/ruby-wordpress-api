@@ -1,3 +1,5 @@
 *.tmp
 *.swp
 wordpress.yml
+Gemfile.lock
+.rvmrc

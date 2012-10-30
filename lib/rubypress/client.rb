@@ -8,22 +8,24 @@ module Rubypress
 
     def initialize(options = {})
       opts = {
-        :port => 80,
-        :use_ssl => true,
-        :host => nil,
-        :path => '/xmlrpc.php',
-        :username => nil,
-        :password => nil,
-        :default_post_fields => ['post','terms','custom_fields']
+        :host                 =>  nil,
+        :port                 =>  80,
+        :use_ssl              =>  true,
+        :path                 =>  '/xmlrpc.php',
+        :username             =>  nil,
+        :password             =>  nil,
+        :default_post_fields  =>  ['post','terms','custom_fields']
       }.merge(options)
-      self.port = opts[:port]
-      self.host = opts[:host]
-      self.path = opts[:path]
-      self.username = opts[:username]
-      self.password = opts[:password]
-      self.use_ssl = opts[:use_ssl]
-      self.default_post_fields = opts[:default_post_fields]
+      
+      self.host                 =   opts[:host]
+      self.port                 =   opts[:port]
+      self.path                 =   opts[:path]
+      self.username             =   opts[:username]
+      self.password             =   opts[:password]
+      self.use_ssl              =   opts[:use_ssl]
+      self.default_post_fields  =   opts[:default_post_fields]
       self.connect
+      
       self
     end
 
@@ -88,6 +90,33 @@ module Rubypress
           :order => opts[:order]
         },
         opts[:default_post_fields]
+      )
+    end
+    
+    #http://codex.wordpress.org/XML-RPC_WordPress_API/Posts#wp.newPost
+    def new_post(options = {})
+      opts = {
+        :blog_id          => 0,
+        :username         => self.username,
+        :password         => self.password,
+        :content          =>  {
+          :post_author      =>  1,
+          :post_type        =>  'post',
+          :post_status      =>  'publish',
+          :post_title       =>  'New WordPress Post',
+          :post_name        =>  'new-wordpress-post-permalink',
+          :post_content     =>  "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+          :comment_status   =>  'open',
+          :ping_status      =>  'open',
+          :terms            =>  ['category' => 1]
+        }
+      }.merge(options)
+      self.connection.call(
+        "wp.newPost", 
+        opts[:blog_id],
+        opts[:username],
+        opts[:password],
+        opts[:content]
       )
     end
 
