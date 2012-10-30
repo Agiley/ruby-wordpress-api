@@ -24,10 +24,19 @@ Gem::Specification.new do |s|
     "VERSION",
     "lib/rubypress.rb",
     "lib/rubypress/client.rb",
+    "lib/rubypress/comments.rb",
+    "lib/rubypress/media.rb",
+    "lib/rubypress/options.rb",
+    "lib/rubypress/posts.rb",
+    "lib/rubypress/taxonomies.rb",
+    "lib/rubypress/users.rb",
     "rubypress.gemspec",
     "rubypress.rb",
+    "spec/posts_spec.rb",
     "spec/rubypress_spec.rb",
     "spec/spec_helper.rb",
+    "spec/taxonomies_spec.rb",
+    "spec/users_spec.rb",
     "wordpress.yml.example"
   ]
   s.homepage = "http://github.com/djcp/rubypress"
