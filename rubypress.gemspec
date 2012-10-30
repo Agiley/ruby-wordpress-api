@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
     "VERSION",
     "lib/rubypress.rb",
     "lib/rubypress/client.rb",
+    "rubypress.gemspec",
     "rubypress.rb",
     "spec/rubypress_spec.rb",
     "spec/spec_helper.rb",
