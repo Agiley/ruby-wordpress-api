@@ -74,31 +74,32 @@ module Rubypress
       )
     end
     
-    def all_posts(options = {})
+    def get_posts(options = {})
       opts = {
-        :blog_id => 0,
-        :username => self.username,
-        :password => self.password,
-        :post_type => 'post',
-        :post_status => '',
-        :number => 0,
-        :offset => 0,
-        :orderby => 'post_id',
-        :order => 'asc',
+        :blog_id      =>  0,
+        :username     =>  self.username,
+        :password     =>  self.password,
+        :post_type    =>  'post',
+        :post_status  =>  '',
+        :number       =>  0,
+        :offset       =>  0,
+        :orderby      =>  'post_id',
+        :order        =>  'asc',
         :default_post_fields => self.default_post_fields
       }.merge(options)
+      
       self.connection.call(
         "wp.getPosts", 
         opts[:blog_id], 
         opts[:username],
         opts[:password],
         {
-          :post_type => opts[:post_type], 
-          :post_status => opts[:post_status],
-          :number => opts[:number],
-          :offset => opts[:offset],
-          :orderby => opts[:orderby],
-          :order => opts[:order]
+          :post_type    =>  opts[:post_type], 
+          :post_status  =>  opts[:post_status],
+          :number       =>  opts[:number],
+          :offset       =>  opts[:offset],
+          :orderby      =>  opts[:orderby],
+          :order        =>  opts[:order]
         },
         opts[:default_post_fields]
       )

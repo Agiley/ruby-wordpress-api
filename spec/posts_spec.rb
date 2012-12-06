@@ -51,7 +51,7 @@ describe "Post management using Rubypress" do
   end
   
   it 'can retrieve blog posts successfully' do
-    result          =   @client.all_posts
+    result          =   @client.get_posts
     result.class.should == Array
     result.size.should be > 0
   end
