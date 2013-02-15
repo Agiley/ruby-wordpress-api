@@ -70,7 +70,7 @@ module Rubypress
         :blog_id              =>  0,
         :username             =>  self.username,
         :password             =>  self.password,
-        :post_id              =>  nil
+        :post_id              =>  nil,
         :default_post_fields  =>  self.default_post_fields
       }.merge(options) 
       
