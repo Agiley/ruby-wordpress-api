@@ -4,7 +4,6 @@ module Rubypress
     #http://codex.wordpress.org/XML-RPC_WordPress_API/Users#wp.getUsersBlogs
     def get_users_blogs(options = {})
       opts = {
-        :blog_id  => 0,
         :username => self.username,
         :password => self.password
       }.merge(options)
@@ -14,6 +13,50 @@ module Rubypress
         opts[:username],
         opts[:password]
       )
+    end
+    
+    #http://codex.wordpress.org/XML-RPC_WordPress_API/Users#wp.getUser
+    def get_user(options = {})
+      opts = {
+        :blog_id    =>  0,
+        :username   =>  self.username,
+        :password   =>  self.password,
+        :user_id    =>  0,
+        :fields     =>  []
+      }.merge(options)
+      
+      args = [
+        opts[:blog_id],
+        opts[:username],
+        opts[:password],
+        opts[:user_id]
+      ]
+      
+      args << opts[:fields] unless (opts[:fields].nil? || opts[:fields].empty?)
+      
+      self.connection.call("wp.getUser", args)
+    end
+    
+    #http://codex.wordpress.org/XML-RPC_WordPress_API/Users#wp.getUsers
+    def get_users(options = {})
+      opts = {
+        :blog_id    =>  0,
+        :username   =>  self.username,
+        :password   =>  self.password,
+        :filter     =>  {},
+        :fields     =>  []
+      }.merge(options)
+      
+      args = [
+        opts[:blog_id],
+        opts[:username],
+        opts[:password]
+      ]
+      
+      args << opts[:filter] unless (opts[:filter].nil? || opts[:filter].empty?)
+      args << opts[:fields] unless (opts[:fields].nil? || opts[:fields].empty?)
+      
+      self.connection.call("wp.getUsers", args)
     end
     
     #Not yet available
