@@ -3,6 +3,7 @@
 $LOAD_PATH.unshift(File.dirname(__FILE__)) unless $LOAD_PATH.include?(File.dirname(__FILE__))
 
 require 'xmlrpc/client'
+require 'rubypress/xmlrpc_extension'
 
 require 'rubypress/posts'
 require 'rubypress/taxonomies'
