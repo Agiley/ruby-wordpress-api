@@ -15,6 +15,8 @@ module Rubypress
         }
       }.merge(options)
       
+      opts[:data][:bits] = XMLRPC::Base64.new(opts[:data][:bits])
+      
       self.connection.call(
         "wp.uploadFile", 
         opts[:blog_id],

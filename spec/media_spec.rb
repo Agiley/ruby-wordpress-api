@@ -14,7 +14,7 @@ describe "Media Management using Rubypress" do
     data          =   {
       name:         file_name,
       type:         'image/png',
-      bits:         XMLRPC::Base64.new(file.read),
+      bits:         file.read,
       overwrite:    false
     }
     
