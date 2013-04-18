@@ -5,6 +5,12 @@ describe "Media Management using Rubypress" do
   before(:each) do
     @client       =   init_wp_admin_connection
   end
+  
+  it 'can fetch the media library and its contents successfully' do
+    result        =   @client.get_media_library
+    
+    result.class.should == Array
+  end
     
   it 'can upload files successfully' do
     file_path     =   File.expand_path(File.dirname(__FILE__) + '/files/peter_griffin.png')

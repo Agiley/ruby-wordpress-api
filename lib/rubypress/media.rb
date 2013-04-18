@@ -1,6 +1,24 @@
 module Rubypress
   module Media
     
+    #http://codex.wordpress.org/XML-RPC_WordPress_API/Media#wp.getMediaLibrary
+    def get_media_library(options = {})
+      opts = {
+        :blog_id          =>  0,
+        :username         =>  self.username,
+        :password         =>  self.password,
+        :filter           =>  {}
+      }.merge(options)
+      
+      self.connection.call(
+        "wp.getMediaLibrary", 
+        opts[:blog_id],
+        opts[:username],
+        opts[:password],
+        opts[:filter]
+      )
+    end
+    
     #http://codex.wordpress.org/XML-RPC_WordPress_API/Media#wp.uploadFile
     def upload_file(options = {})
       opts = {
