@@ -3,8 +3,9 @@
 module Rubypress
   class Client
     attr_reader :connection
-    attr_accessor :port, :host, :path, :username, :password, :use_ssl, :default_post_fields
-    attr_accessor :verbose
+    attr_accessor :port, :host, :path, :username, :password, :use_ssl
+    attr_accessor :timeout, :verbose
+    attr_accessor :default_post_fields
     
     def initialize(options = {})
       opts = {
@@ -14,7 +15,8 @@ module Rubypress
         :path                 =>  '/xmlrpc.php',
         :username             =>  nil,
         :password             =>  nil,
-        :default_post_fields  =>  ['post','terms','custom_fields'],
+        :default_post_fields  =>  ['post', 'terms', 'custom_fields'],
+        :timeout              =>  30,
         :verbose              =>  false
       }.merge(options)
       
@@ -25,6 +27,7 @@ module Rubypress
       self.password             =   opts[:password]
       self.use_ssl              =   opts[:use_ssl]
       self.default_post_fields  =   opts[:default_post_fields]
+      self.timeout              =   opts[:timeout]
       self.verbose              =   opts[:verbose]
       self.connect
       
@@ -32,7 +35,7 @@ module Rubypress
     end
 
     def connect
-      @connection               =   XMLRPC::Client.new(self.host, self.path, self.port, nil, nil, nil, nil, self.use_ssl, nil)
+      @connection               =   XMLRPC::Client.new(self.host, self.path, self.port, nil, nil, nil, nil, self.use_ssl, self.timeout)
       @connection.set_debug if @connection.respond_to?(:set_debug) && self.verbose
     end
     
