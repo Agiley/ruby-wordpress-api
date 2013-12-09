@@ -10,6 +10,7 @@ require 'rubypress/taxonomies'
 require 'rubypress/media'
 require 'rubypress/comments'
 require 'rubypress/options'
+require 'rubypress/themes'
 require 'rubypress/users'
 
 require 'rubypress/client'
