@@ -35,7 +35,8 @@ module Rubypress
     end
 
     def connect
-      @connection               =   XMLRPC::Client.new(self.host, self.path, self.port, nil, nil, nil, nil, self.use_ssl, self.timeout)
+      @connection                     =   XMLRPC::Client.new(self.host, self.path, self.port, nil, nil, nil, nil, self.use_ssl, self.timeout)
+      @connection.http_header_extra   =   {"accept-encoding" => "identity"} #Fix for RuntimeError: Wrong size.
       @connection.set_debug if @connection.respond_to?(:set_debug) && self.verbose
     end
     
