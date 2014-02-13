@@ -12,5 +12,6 @@ require 'rubypress/comments'
 require 'rubypress/options'
 require 'rubypress/themes'
 require 'rubypress/users'
+require 'rubypress/custom'
 
 require 'rubypress/client'
