@@ -46,6 +46,7 @@ module Rubypress
     include Rubypress::Comments
     include Rubypress::Options
     include Rubypress::Users
+    include Rubypress::Custom
 
   end
 end
