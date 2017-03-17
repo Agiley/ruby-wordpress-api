@@ -27,6 +27,43 @@ module Rubypress
       )
     end
     
+    #http://codex.wordpress.org/XML-RPC_WordPress_API/Comments#wp.newComment
+    def new_comment(options = {})
+      opts = {
+        :blog_id          => 0,
+        :username         => self.username,
+        :password         => self.password,
+        :post_id          => 0
+      }.merge(options)
+      
+      self.connection.call(
+        "wp.newComment", 
+        opts[:blog_id],
+        opts[:username],
+        opts[:password],
+        opts[:post_id],
+        opts[:comment]
+      )
+    end
+    #http://codex.wordpress.org/XML-RPC_WordPress_API/Comments#wp.editComment
+    def edit_comment(options = {})
+      opts = {
+        :blog_id          => 0,
+        :username         => self.username,
+        :password         => self.password,
+        :comment_id       => 0
+      }.merge(options)
+      
+      self.connection.call(
+        "wp.editComment", 
+        opts[:blog_id],
+        opts[:username],
+        opts[:password],
+        opts[:comment_id],
+        opts[:comment]
+      )
+    end
+    
     #http://codex.wordpress.org/XML-RPC_WordPress_API/Comments#wp.deleteComment
     def delete_comment(options = {})
       opts = {
